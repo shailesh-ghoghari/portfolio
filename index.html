@@ -1,354 +1,758 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Shailesh Portfolio</title>
-
-  <!-- Fonts -->
+  <title>Shailesh Ghoghari – Full Stack Developer</title>
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-
-  <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
+  <style>
+    :root {
+      --navy:   #0F1F3D;
+      --accent: #2563EB;
+      --accent2:#38BDF8;
+      --light:  #F8FAFC;
+      --gray:   #64748B;
+      --card:   #FFFFFF;
+      --border: #E2E8F0;
+      --tag-bg: #EFF6FF;
+      --tag-color: #2563EB;
+    }
+
+    * { box-sizing: border-box; }
+
+    body { font-family: 'Inter', sans-serif; background: var(--light); color: #1E293B; }
+
+    /* ── NAV ── */
+    #header {
+      background: rgba(15,31,61,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding: 0 0;
+    }
+    #header .sitename {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.01em;
+      margin: 0;
+    }
+    .navmenu ul li a { color: rgba(255,255,255,0.75) !important; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.03em; }
+    .navmenu ul li a:hover, .navmenu ul li a.active { color: var(--accent2) !important; }
+    .nav-github {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--accent); color: #fff !important;
+      padding: 6px 14px; border-radius: 6px; font-size: 0.82rem; font-weight: 600;
+      transition: background 0.2s;
+    }
+    .nav-github:hover { background: #1d4ed8 !important; color: #fff !important; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0F1F3D 0%, #1E3A6E 60%, #0F1F3D 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      padding: 100px 0 60px;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(37,99,235,0.18) 0%, transparent 70%);
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+      position: relative; z-index: 2;
+    }
+    .hero-label {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+      color: var(--accent2); text-transform: uppercase; margin-bottom: 16px;
+    }
+    .hero-name {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 800; color: #fff; line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .hero-name span { color: var(--accent2); }
+    .hero-role {
+      font-size: 1.05rem; color: rgba(255,255,255,0.65);
+      margin-bottom: 32px; line-height: 1.6;
+    }
+    .hero-typed { color: var(--accent2); font-weight: 600; }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary-hero {
+      background: var(--accent); color: #fff;
+      padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 0.9rem;
+      text-decoration: none; transition: all 0.2s; border: none;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary-hero:hover { background: #1d4ed8; color: #fff; transform: translateY(-1px); }
+    .btn-outline-hero {
+      background: transparent; color: #fff;
+      padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 0.9rem;
+      text-decoration: none; border: 1px solid rgba(255,255,255,0.3);
+      display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s;
+    }
+    .btn-outline-hero:hover { border-color: var(--accent2); color: var(--accent2); }
+    .hero-photo-wrap {
+      display: flex; justify-content: center; align-items: center;
+    }
+    .hero-photo {
+      width: 280px; height: 280px; border-radius: 50%;
+      object-fit: cover; object-position: top;
+      border: 4px solid rgba(56,189,248,0.4);
+      box-shadow: 0 0 0 8px rgba(37,99,235,0.12), 0 24px 60px rgba(0,0,0,0.35);
+    }
+    .hero-stats {
+      display: flex; gap: 32px; margin-top: 40px; padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero-stat-num {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.8rem; font-weight: 800; color: var(--accent2); line-height: 1;
+    }
+    .hero-stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 4px; }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 80px 0; }
+    .section-eyebrow {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+    }
+    .section-title-main {
+      font-family: 'Sora', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800; color: var(--navy); margin-bottom: 12px; line-height: 1.2;
+    }
+    .section-desc { color: var(--gray); font-size: 0.95rem; max-width: 520px; }
+    .section-divider {
+      width: 40px; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 2px; margin: 16px 0 48px;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: #fff; }
+    .about-photo {
+      width: 100%; max-width: 320px; border-radius: 16px;
+      object-fit: cover; object-position: top;
+      box-shadow: 0 20px 60px rgba(37,99,235,0.12);
+      border: 1px solid var(--border);
+    }
+    .about-info-list p { font-size: 0.9rem; margin-bottom: 8px; color: var(--navy); }
+    .about-info-list p strong { color: var(--gray); font-weight: 500; min-width: 80px; display: inline-block; }
+    .about-info-list a { color: var(--accent); text-decoration: none; }
+    .about-info-list a:hover { text-decoration: underline; }
+    .btn-resume {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--navy); color: #fff;
+      padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 0.88rem;
+      text-decoration: none; margin-top: 20px; transition: all 0.2s;
+    }
+    .btn-resume:hover { background: var(--accent); color: #fff; }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--light); }
+    .skill-category-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .skill-category-card:hover { box-shadow: 0 8px 32px rgba(37,99,235,0.1); transform: translateY(-2px); }
+    .skill-cat-title {
+      font-family: 'Sora', sans-serif; font-size: 0.85rem; font-weight: 700;
+      color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+    }
+    .skill-cat-title i { font-size: 1rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tag {
+      background: var(--tag-bg); color: var(--tag-color);
+      font-size: 0.78rem; font-weight: 600; padding: 4px 12px;
+      border-radius: 20px; border: 1px solid rgba(37,99,235,0.15);
+    }
+    .skill-tag.new {
+      background: #F0FDF4; color: #16A34A;
+      border-color: rgba(22,163,74,0.2);
+    }
+    .skill-tag.new::after { content: ' ★'; font-size: 0.65rem; }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: #fff; }
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 10px; top: 8px; bottom: 8px;
+      width: 2px; background: linear-gradient(180deg, var(--accent), var(--accent2), transparent);
+      border-radius: 2px;
+    }
+    .timeline-item { position: relative; margin-bottom: 48px; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute; left: -28px; top: 4px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--accent); border: 2px solid #fff;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
+    }
+    .timeline-dot.active { background: #16A34A; box-shadow: 0 0 0 3px rgba(22,163,74,0.2); }
+    .timeline-period {
+      font-size: 0.75rem; font-weight: 600; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;
+    }
+    .timeline-role {
+      font-family: 'Sora', sans-serif; font-size: 1.1rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 2px;
+    }
+    .timeline-company { font-size: 0.88rem; color: var(--gray); margin-bottom: 14px; }
+    .timeline-points { list-style: none; padding: 0; margin: 0; }
+    .timeline-points li {
+      font-size: 0.88rem; color: #334155; padding: 4px 0 4px 18px;
+      position: relative; line-height: 1.6;
+    }
+    .timeline-points li::before {
+      content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 0.75rem; top: 6px;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--light); }
+    .project-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 16px;
+      padding: 28px; height: 100%;
+      transition: box-shadow 0.25s, transform 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover { box-shadow: 0 16px 48px rgba(37,99,235,0.12); transform: translateY(-3px); }
+    .project-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 4px 10px; border-radius: 20px; margin-bottom: 14px;
+    }
+    .badge-ongoing { background: #F0FDF4; color: #16A34A; }
+    .badge-completed { background: #EFF6FF; color: #2563EB; }
+    .badge-solo { background: #FFF7ED; color: #EA580C; }
+    .project-title {
+      font-family: 'Sora', sans-serif; font-size: 1.05rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 6px;
+    }
+    .project-role { font-size: 0.8rem; color: var(--gray); margin-bottom: 12px; }
+    .project-desc { font-size: 0.87rem; color: #475569; line-height: 1.65; margin-bottom: 16px; flex-grow: 1; }
+    .project-highlight {
+      background: #EFF6FF; border-left: 3px solid var(--accent);
+      padding: 10px 14px; border-radius: 0 8px 8px 0;
+      font-size: 0.82rem; color: #1E40AF; margin-bottom: 16px; line-height: 1.55;
+    }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+    .tech-tag {
+      background: #F1F5F9; color: #475569;
+      font-size: 0.73rem; font-weight: 500; padding: 3px 10px; border-radius: 12px;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: #fff; }
+    .service-card {
+      background: var(--light); border: 1px solid var(--border); border-radius: 12px;
+      padding: 28px 24px; text-align: center; height: 100%;
+      transition: all 0.2s;
+    }
+    .service-card:hover { background: #fff; box-shadow: 0 8px 32px rgba(37,99,235,0.09); transform: translateY(-2px); }
+    .service-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px; font-size: 1.4rem; color: var(--accent);
+    }
+    .service-card h3 { font-family: 'Sora', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .service-card p { font-size: 0.84rem; color: var(--gray); line-height: 1.65; margin: 0; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--navy); }
+    #contact .section-title-main { color: #fff; }
+    #contact .section-eyebrow { color: var(--accent2); }
+    #contact .section-desc { color: rgba(255,255,255,0.6); }
+    .contact-card {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px; padding: 24px; text-align: center;
+      transition: background 0.2s;
+    }
+    .contact-card:hover { background: rgba(255,255,255,0.1); }
+    .contact-card i { font-size: 1.6rem; color: var(--accent2); margin-bottom: 12px; display: block; }
+    .contact-card h3 { font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+    .contact-card p, .contact-card a { font-size: 0.9rem; color: #fff; text-decoration: none; margin: 0; }
+    .contact-card a:hover { color: var(--accent2); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #07111F; padding: 24px 0; text-align: center;
+      font-size: 0.82rem; color: rgba(255,255,255,0.35);
+    }
+
+    /* ── SCROLL TOP ── */
+    #scroll-top {
+      background: var(--accent); border-radius: 8px;
+      width: 40px; height: 40px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+      .hero-photo-wrap { order: -1; }
+      .hero-photo { width: 200px; height: 200px; }
+      .hero-cta { justify-content: center; }
+      .hero-stats { justify-content: center; }
+    }
+  </style>
 </head>
 
 <body class="index-page">
 
-  <header id="header" class="header d-flex align-items-center sticky-top">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+<!-- ── HEADER ── -->
+<header id="header" class="header d-flex align-items-center sticky-top">
+  <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+    <a href="index.html" class="logo d-flex align-items-center">
+      <h1 class="sitename">SG<span style="color:var(--accent2)">.</span></h1>
+    </a>
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="#hero" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://github.com/shailesh-ghoghari" target="_blank" class="nav-github"><i class="bi bi-github"></i> GitHub</a></li>
+      </ul>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    </nav>
+  </div>
+</header>
 
-      <a href="index.html" class="logo d-flex align-items-center">
-        <h1 class="sitename">Shailesh Portfolio</h1>
-      </a>
+<main class="main">
 
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="#hero" class="active">Home<br></a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
-
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <p class="hero-label">👋 Available for opportunities</p>
+          <h1 class="hero-name">Shailesh<br><span>Ghoghari</span></h1>
+          <p class="hero-role">
+            <span class="typed hero-typed" data-typed-items="Laravel Developer,Full Stack Developer"></span><br>
+            Building scalable web apps, CRM platforms & AI-integrated systems.
+          </p>
+          <div class="hero-cta">
+            <a href="Resume.pdf" class="btn-primary-hero" target="_blank"><i class="bi bi-download"></i> Download Resume</a>
+            <a href="#projects" class="btn-outline-hero"><i class="bi bi-grid"></i> View Projects</a>
+          </div>
+          <div class="hero-stats">
+            <div>
+              <div class="hero-stat-num">3.5+</div>
+              <div class="hero-stat-label">Years Exp.</div>
+            </div>
+            <div>
+              <div class="hero-stat-num">6+</div>
+              <div class="hero-stat-label">Projects</div>
+            </div>
+            <div>
+              <div class="hero-stat-num">10+</div>
+              <div class="hero-stat-label">Integrations</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-photo-wrap">
+          <img src="assets/img/profile-img.jpeg" class="hero-photo" alt="Shailesh Ghoghari">
+        </div>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <main class="main">
-
-    <!-- Hero Section -->
-    <section id="hero" class="hero section dark-background">
-
-      <img src="assets/img/full-stack-web-developer-in-trichy.jpg" alt="" data-aos="fade-in">
-
-      <div class="container d-flex flex-column align-items-center justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
-        <h2>I am Shailesh Ghoghari</h2>
-        <p><span class="typed" data-typed-items="Designer, Developer"></span></p>
-      </div>
-
-    </section><!-- /Hero Section -->
-
-    <!-- About Section -->
-    <section id="about" class="about section">
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4">
-          <div class="col-md-6">
-            <div class="row justify-content-between gy-4">
-              <div class="col-lg-5">
-                <img src="assets/img/profile-img.jpeg" class="img-fluid" alt="">
-              </div>
-              <div class="col-lg-7 about-info">
-                <p><strong>Name: </strong> <span>Shailesh Ghoghari</span></p>
-                <p><strong>Profile: </strong> <span>Full Stack Developer</span></p>
-                <p><strong>Email: </strong> <span>ghoghari.shailesh.78@gmail.com</span></p>
-                <p><strong>Phone: </strong> <span>+91 97258 26747</span></p>
-                <p><strong>LinkedIn: </strong> <span><a href="https://www.linkedin.com/in/shailesh-ghoghari-b96b97228" target="_blank">https://www.linkedin.com/in/shailesh-ghoghari-b96b97228</a></span></p>
-              </div>
-            </div>
-
-            <div class="skills-content skills-animation">
-
-              <h5>Skills</h5>
-
-              <div class="progress">
-                <span class="skill"><span>Laravel & PHP</span> <i class="val">100%</i></span>
-                <div class="progress-bar-wrap">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-              <!-- End Skills Item -->
-
-              <div class="progress">
-                <span class="skill"><span>HTML</span> <i class="val">100%</i></span>
-                <div class="progress-bar-wrap">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div><!-- End Skills Item -->
-
-              <div class="progress">
-                <span class="skill"><span>JavaScript</span> <i class="val">90%</i></span>
-                <div class="progress-bar-wrap">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div><!-- End Skills Item -->
-
-              <div class="progress">
-                <span class="skill"><span>Jquery/Ajax</span> <i class="val">90%</i></span>
-                <div class="progress-bar-wrap">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div><!-- End Skills Item -->
-
-              <div class="progress">
-                <span class="skill"><span>CSS & Bootstrap</span> <i class="val">80%</i></span>
-                <div class="progress-bar-wrap">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div><!-- End Skills Item -->
-
-            </div>
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <div class="container" data-aos="fade-up">
+      <div class="row gy-5 align-items-center">
+        <div class="col-md-4 text-center text-md-start">
+          <img src="assets/img/profile-img.jpeg" class="about-photo" alt="Shailesh Ghoghari">
+        </div>
+        <div class="col-md-8">
+          <p class="section-eyebrow">About Me</p>
+          <h2 class="section-title-main">Full Stack Developer<br>based in Bengaluru</h2>
+          <div class="section-divider"></div>
+          <p style="color:#475569; font-size:0.93rem; line-height:1.75; margin-bottom:20px;">
+            I'm a Full Stack Developer with <strong>3.5+ years of experience</strong> building dynamic web applications, REST APIs, and automation platforms. My core expertise is in <strong>Laravel & PHP</strong>, with recent hands-on work in <strong>React.js, Node.js, and TypeScript</strong>.
+          </p>
+          <p style="color:#475569; font-size:0.93rem; line-height:1.75; margin-bottom:28px;">
+            I've worked across CRM automation, gaming platforms, social media management, cloud telephony, and AI-integrated systems — delivering production-ready solutions independently and within teams.
+          </p>
+          <div class="about-info-list">
+            <p><strong>Email</strong> <a href="mailto:ghoghari.shailesh.78@gmail.com">ghoghari.shailesh.78@gmail.com</a></p>
+            <p><strong>Phone</strong> +91 97258 26747</p>
+            <p><strong>Location</strong> Bengaluru, Karnataka, India</p>
+            <p><strong>LinkedIn</strong> <a href="https://www.linkedin.com/in/shailesh-ghoghari-b96b97228" target="_blank">shailesh-ghoghari</a></p>
+            <p><strong>GitHub</strong> <a href="https://github.com/shailesh-ghoghari" target="_blank">shailesh-ghoghari</a></p>
           </div>
+          <a href="Resume.pdf" class="btn-resume" target="_blank"><i class="bi bi-file-earmark-person"></i> View Resume</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-          <div class="col-md-6">
-            <div class="about-me">
-              <h4>About me</h4>
+  <!-- ── SKILLS ── -->
+  <section id="skills">
+    <div class="container" data-aos="fade-up">
+      <p class="section-eyebrow">What I Work With</p>
+      <h2 class="section-title-main">Technical Skills</h2>
+      <div class="section-divider"></div>
+      <div class="row gy-4">
 
-              <p>I'm a Full Stack Developer with 3.5+ years of experience in building dynamic and responsive web applications.
-                I specialize in both front-end technologies (HTML, CSS, JavaScript, Bootstrap, jQuery) and back-end development (Laravel, PHP, MySQL),
-                delivering seamless and scalable solutions from concept to deployment.
-              </p>
-
-              <p>In addition to core development, I have hands-on experience in CRM automation, streamlining workflows, integrating third-party tools,
-                and enhancing user engagement through efficient customer relationship management systems.
-                I'm also skilled in API integration and performance optimization to ensure high-performing, maintainable applications.
-              </p>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="skill-category-card">
+            <div class="skill-cat-title"><i class="bi bi-server"></i> Backend (Primary)</div>
+            <div class="skill-tags">
+              <span class="skill-tag">PHP 7.x / 8.x</span>
+              <span class="skill-tag">Laravel 8/9/10</span>
+              <span class="skill-tag">RESTful APIs</span>
+              <span class="skill-tag">MVC</span>
+              <span class="skill-tag">OOP</span>
+              <span class="skill-tag">Eloquent ORM</span>
             </div>
-            <br>
-            <br>
-            <div class="text-end"><a href="Resume.pdf" class="resume" target="_blank">Resume</a></div>
           </div>
         </div>
 
-      </div>
-
-    </section><!-- /About Section -->
-
-    <!-- Services Section -->
-    <section id="services" class="services section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Services</h2>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item  position-relative">
-              <div class="icon">
-                <i class="bi bi-laptop"></i>
-              </div>
-              <a class="stretched-link">
-                <h3>Web Design</h3>
-              </a>
-              <p>I create clean, modern, and mobile-friendly website designs that look great and work well on all devices. My goal is to make websites easy to use, fast to load, and visually appealing for a better user experience</p>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="150">
+          <div class="skill-category-card">
+            <div class="skill-cat-title"><i class="bi bi-display"></i> Frontend (Primary)</div>
+            <div class="skill-tags">
+              <span class="skill-tag">HTML5</span>
+              <span class="skill-tag">CSS3</span>
+              <span class="skill-tag">Bootstrap 4/5</span>
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">jQuery</span>
+              <span class="skill-tag">AJAX</span>
             </div>
-          </div><!-- End Service Item -->
+          </div>
+        </div>
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-database"></i>
-              </div>
-              <a class="stretched-link">
-                <h3>Web Development</h3>
-              </a>
-              <p>I build powerful and user-friendly websites using front-end and back-end technologies. From basic sites to complex web apps, I make sure everything works smoothly, loads fast, and meets your business needs.</p>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="skill-category-card" style="border-color: rgba(22,163,74,0.3);">
+            <div class="skill-cat-title" style="color:#16A34A;"><i class="bi bi-stars"></i> Full Stack – Recent</div>
+            <div class="skill-tags">
+              <span class="skill-tag new">React.js</span>
+              <span class="skill-tag new">Node.js</span>
+              <span class="skill-tag new">TypeScript</span>
             </div>
-          </div><!-- End Service Item -->
+            <p style="font-size:0.74rem; color:#16A34A; margin-top:10px; margin-bottom:0;">★ Actively working on production project (Atlas)</p>
+          </div>
+        </div>
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-diagram-3"></i>
-              </div>
-              <a class="stretched-link">
-                <h3>CRM Automation</h3>
-              </a>
-              <p>I help businesses automate their customer relationship management by setting up smart workflows, email automation, and integrations. This saves time, improves follow-ups, and keeps customer data organized.</p>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="250">
+          <div class="skill-category-card">
+            <div class="skill-cat-title"><i class="bi bi-database"></i> Database</div>
+            <div class="skill-tags">
+              <span class="skill-tag">MySQL</span>
+              <span class="skill-tag">Query Optimization</span>
+              <span class="skill-tag">Eloquent ORM</span>
             </div>
-          </div><!-- End Service Item -->
+          </div>
+        </div>
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-bounding-box-circles"></i>
-              </div>
-              <a class="stretched-link">
-                <h3>Clean Code</h3>
-              </a>
-              <p>I write clean, well-organized, and easy-to-understand code that makes websites and apps faster, more reliable, and easier to maintain. Clean code helps teams work better and makes future updates easier.</p>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="skill-category-card">
+            <div class="skill-cat-title"><i class="bi bi-plug"></i> Integrations</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Stripe</span>
+              <span class="skill-tag">PayPal</span>
+              <span class="skill-tag">Razorpay</span>
+              <span class="skill-tag">Twilio</span>
+              <span class="skill-tag">ElevenLabs AI</span>
+              <span class="skill-tag">OpenAI API</span>
+              <span class="skill-tag">Firebase FCM</span>
+              <span class="skill-tag">Instagram API</span>
+              <span class="skill-tag">Facebook API</span>
+              <span class="skill-tag">LinkedIn API</span>
             </div>
-          </div><!-- End Service Item -->
+          </div>
+        </div>
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-tablet"></i>
-              </div>
-              <a class="stretched-link">
-                <h3>Fully Responsive</h3>
-              </a>
-              <p>I create fully responsive websites that look and work great on all screen sizes—desktops, tablets, and smartphones. This ensures a smooth user experience and keeps your site accessible to everyone.</p>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="350">
+          <div class="skill-category-card">
+            <div class="skill-cat-title"><i class="bi bi-tools"></i> Tools & Practices</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Git</span>
+              <span class="skill-tag">GitHub</span>
+              <span class="skill-tag">Laravel Queues</span>
+              <span class="skill-tag">Cron Jobs</span>
+              <span class="skill-tag">Spatie MediaLibrary</span>
+              <span class="skill-tag">Laravel Cashier</span>
             </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-hdd-rack"></i>
-              </div>
-              <a class="stretched-link">
-                <h3>API Integration</h3>
-              </a>
-              <p>I integrate third-party APIs to connect your website or app with external services like payment gateways, CRMs, or social platforms, helping your system work smarter and automate more tasks.</p>
-            </div>
-          </div><!-- End Service Item -->
-
+          </div>
         </div>
 
       </div>
+    </div>
+  </section>
 
-    </section><!-- /Services Section -->
+  <!-- ── EXPERIENCE ── -->
+  <section id="experience">
+    <div class="container" data-aos="fade-up">
+      <p class="section-eyebrow">Career</p>
+      <h2 class="section-title-main">Work Experience</h2>
+      <div class="section-divider"></div>
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="timeline">
 
-    <!-- Stats Section -->
-    <section style="display: none" id="stats" class="stats section accent-background">
-
-      <img src="assets/img/stats-bg.jpg" alt="" data-aos="fade-in">
-
-      <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item text-center w-100 h-100">
-              <span data-purecounter-start="0" data-purecounter-end="5" data-purecounter-duration="0" class="purecounter">5</span>
-              <p>Clients</p>
+            <div class="timeline-item">
+              <div class="timeline-dot active"></div>
+              <div class="timeline-period">August 2022 – Present · 3.5+ Years</div>
+              <div class="timeline-role">Full Stack Developer</div>
+              <div class="timeline-company">BajarangiSoft · Bengaluru, Karnataka</div>
+              <ul class="timeline-points">
+                <li>Delivered <strong>6+ production applications</strong> across CRM, gaming, social media automation, and cloud telephony domains.</li>
+                <li>Architected secure <strong>RESTful APIs</strong> for web and mobile clients, cutting integration turnaround by ~40% per feature.</li>
+                <li>Implemented multi-gateway payment systems (Stripe, PayPal, Razorpay) for <strong>1,000+ users</strong>.</li>
+                <li>Integrated <strong>AI tools</strong> — OpenAI API and ElevenLabs voice agents — into production platforms.</li>
+                <li>Built <strong>cloud telephony</strong> solutions using Twilio in a React.js + Node.js environment.</li>
+                <li>Led social media API integrations enabling <strong>multi-platform post scheduling</strong> across 5 platforms simultaneously.</li>
+                <li>Optimized database queries and background jobs using <strong>Laravel Queues & Cron Jobs</strong>.</li>
+              </ul>
             </div>
-          </div><!-- End Stats Item -->
-
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item text-center w-100 h-100">
-              <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="0" class="purecounter">10</span>
-              <p>Projects</p>
-            </div>
-          </div><!-- End Stats Item -->
-
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item text-center w-100 h-100">
-              <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="0" class="purecounter">1453</span>
-              <p>Hours Of Support</p>
-            </div>
-          </div><!-- End Stats Item -->
-
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item text-center w-100 h-100">
-              <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="0" class="purecounter">32</span>
-              <p>Awards</p>
-            </div>
-          </div><!-- End Stats Item -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Stats Section -->
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="info-wrap" data-aos="fade-up" data-aos-delay="200">
-          <div class="row gy-5">
-
-            <div class="col-lg-4">
-              <div class="info-item d-flex align-items-center">
-                <i class="bi bi-geo-alt flex-shrink-0"></i>
-                <div>
-                  <h3>Address</h3>
-                  <p>Banglore, Karnataka, India</p>
-                </div>
-              </div>
-            </div><!-- End Info Item -->
-
-            <div class="col-lg-4">
-              <div class="info-item d-flex align-items-center">
-                <i class="bi bi-telephone flex-shrink-0"></i>
-                <div>
-                  <h3>Call</h3>
-                  <p>+91 97258 26747</p>
-                </div>
-              </div>
-            </div><!-- End Info Item -->
-
-            <div class="col-lg-4">
-              <div class="info-item d-flex align-items-center">
-                <i class="bi bi-envelope flex-shrink-0"></i>
-                <div>
-                  <h3>Email</h3>
-                  <p>ghoghari.shailesh.78@gmail.com</p>
-                </div>
-              </div>
-            </div><!-- End Info Item -->
 
           </div>
         </div>
+        <div class="col-lg-4" data-aos="fade-left">
+          <div style="background: var(--light); border-radius: 12px; padding: 24px; border: 1px solid var(--border);">
+            <p class="section-eyebrow" style="margin-bottom:16px;">Education</p>
+            <div style="margin-bottom: 0;">
+              <div style="font-family:'Sora',sans-serif; font-weight:700; color:var(--navy); font-size:0.95rem; margin-bottom:4px;">Bachelor of Technology (B.Tech)</div>
+              <div style="font-size:0.85rem; color:var(--gray);">Gujarat University</div>
+              <div style="font-size:0.8rem; color:var(--accent); font-weight:600; margin-top:4px;">2018 – 2020</div>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+  </section>
 
-    </section><!-- /Contact Section -->
+  <!-- ── PROJECTS ── -->
+  <section id="projects">
+    <div class="container" data-aos="fade-up">
+      <p class="section-eyebrow">Work I've Done</p>
+      <h2 class="section-title-main">Key Projects</h2>
+      <div class="section-divider"></div>
+      <div class="row gy-4">
 
-  </main>
+        <!-- Atlas -->
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-card">
+            <span class="project-badge badge-ongoing"><i class="bi bi-circle-fill" style="font-size:0.5rem"></i> Ongoing</span>
+            <div class="project-title">Atlas — Auto Glass Service Platform</div>
+            <div class="project-role">Full Stack Developer · Node.js, React.js, TypeScript · 3+ Months</div>
+            <p class="project-desc">A service management platform for CSR teams to handle customer inquiries, calls, SMS, and job workflows from a unified dashboard.</p>
+            <div class="project-highlight">
+              Built a complete cloud telephony system with Twilio inbound/outbound calling, ElevenLabs AI voice agents for automated customer handling, and a floating communication widget.
+            </div>
+            <div class="project-tech">
+              <span class="tech-tag">React.js</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">Twilio API</span>
+              <span class="tech-tag">ElevenLabs API</span>
+              <span class="tech-tag">REST APIs</span>
+              <span class="tech-tag">GitHub</span>
+            </div>
+          </div>
+        </div>
 
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+        <!-- TorkeHub -->
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
+          <div class="project-card">
+            <span class="project-badge badge-completed"><i class="bi bi-check-circle-fill" style="font-size:0.75rem"></i> Completed</span>
+            <div class="project-title">TorkeHub — AI CRM & Marketing Automation</div>
+            <div class="project-role">Lead Laravel Developer · Team of 4 · 1+ Year</div>
+            <p class="project-desc">SaaS CRM platform for managing leads, automating email/SMS campaigns, scheduling social media posts across 5 platforms, and AI-powered content tools.</p>
+            <div class="project-highlight">
+              Led multi-platform social media management (Facebook, Instagram, LinkedIn, Twitter/X, YouTube) with bulk publishing via Excel and OpenAI-powered content generation.
+            </div>
+            <div class="project-tech">
+              <span class="tech-tag">Laravel</span>
+              <span class="tech-tag">PHP</span>
+              <span class="tech-tag">MySQL</span>
+              <span class="tech-tag">OpenAI API</span>
+              <span class="tech-tag">Stripe</span>
+              <span class="tech-tag">Razorpay</span>
+              <span class="tech-tag">Social APIs</span>
+              <span class="tech-tag">Queues</span>
+            </div>
+          </div>
+        </div>
 
-  <!-- Preloader -->
-  <div id="preloader"></div>
+        <!-- OTC Matka -->
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-card">
+            <span class="project-badge badge-solo"><i class="bi bi-person-fill" style="font-size:0.75rem"></i> Solo Build</span>
+            <div class="project-title">OTC Matka — Gaming Admin Platform</div>
+            <div class="project-role">Sole Laravel Developer · 6–8 Months</div>
+            <p class="project-desc">Complete administration platform for a gaming ecosystem — managing user accounts, wallet transactions, game result publishing, and operational analytics.</p>
+            <div class="project-highlight">
+              Engineered a result management workflow where published results automatically triggered wallet recalculations, transaction updates, and reporting sync across all data layers.
+            </div>
+            <div class="project-tech">
+              <span class="tech-tag">Laravel</span>
+              <span class="tech-tag">PHP</span>
+              <span class="tech-tag">MySQL</span>
+              <span class="tech-tag">jQuery</span>
+              <span class="tech-tag">Bootstrap</span>
+              <span class="tech-tag">Git</span>
+            </div>
+          </div>
+        </div>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+        <!-- Sanctus -->
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
+          <div class="project-card">
+            <span class="project-badge badge-completed"><i class="bi bi-check-circle-fill" style="font-size:0.75rem"></i> Completed</span>
+            <div class="project-title">Sanctus — Digital Memorial Platform</div>
+            <div class="project-role">Backend Developer · Admin, Client & Contractor Modules</div>
+            <p class="project-desc">Virtual cemetery platform enabling digital memorial creation, service ordering, and multi-role user management for clients, contractors, and admins.</p>
+            <div class="project-highlight">
+              Integrated Firebase FCM for real-time push notifications (&lt;2s latency) and payment gateways for virtual service purchases.
+            </div>
+            <div class="project-tech">
+              <span class="tech-tag">Laravel</span>
+              <span class="tech-tag">PHP</span>
+              <span class="tech-tag">MySQL</span>
+              <span class="tech-tag">Firebase FCM</span>
+              <span class="tech-tag">Spatie MediaLibrary</span>
+              <span class="tech-tag">AJAX</span>
+            </div>
+          </div>
+        </div>
 
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ── -->
+  <section id="services">
+    <div class="container" data-aos="fade-up">
+      <p class="section-eyebrow">What I Offer</p>
+      <h2 class="section-title-main">Services</h2>
+      <div class="section-divider"></div>
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-card">
+            <div class="service-icon"><i class="bi bi-code-slash"></i></div>
+            <h3>Web Development</h3>
+            <p>Full-stack web applications built with Laravel, PHP, React.js, and Node.js — scalable, secure, and production-ready.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="150">
+          <div class="service-card">
+            <div class="service-icon"><i class="bi bi-diagram-3"></i></div>
+            <h3>CRM Automation</h3>
+            <p>End-to-end CRM systems with lead management, email/SMS automation, workflow triggers, and role-based access control.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-card">
+            <div class="service-icon"><i class="bi bi-hdd-rack"></i></div>
+            <h3>API Development</h3>
+            <p>Secure RESTful APIs for mobile and web clients, with third-party integrations — payment gateways, social platforms, AI services.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="250">
+          <div class="service-card">
+            <div class="service-icon"><i class="bi bi-robot"></i></div>
+            <h3>AI Integration</h3>
+            <p>Integration of OpenAI, ElevenLabs AI voice agents, and other AI tools into production web platforms.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-card">
+            <div class="service-icon"><i class="bi bi-credit-card"></i></div>
+            <h3>Payment Integration</h3>
+            <p>Stripe, PayPal, and Razorpay integration for subscriptions, one-time billing, and secure transaction processing.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="350">
+          <div class="service-card">
+            <div class="service-icon"><i class="bi bi-tablet"></i></div>
+            <h3>Responsive Design</h3>
+            <p>Mobile-first, fully responsive interfaces using Bootstrap and modern CSS — seamless across all screen sizes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <div class="container" data-aos="fade-up">
+      <p class="section-eyebrow">Get In Touch</p>
+      <h2 class="section-title-main">Contact</h2>
+      <div class="section-divider" style="background: linear-gradient(90deg, var(--accent2), var(--accent));"></div>
+      <div class="row gy-4 justify-content-center">
+        <div class="col-lg-3 col-md-6">
+          <div class="contact-card">
+            <i class="bi bi-geo-alt"></i>
+            <h3>Location</h3>
+            <p>Bengaluru, Karnataka, India</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="contact-card">
+            <i class="bi bi-telephone"></i>
+            <h3>Phone</h3>
+            <a href="tel:+919725826747">+91 97258 26747</a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="contact-card">
+            <i class="bi bi-envelope"></i>
+            <h3>Email</h3>
+            <a href="mailto:ghoghari.shailesh.78@gmail.com">ghoghari.shailesh.78@gmail.com</a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="contact-card">
+            <i class="bi bi-github"></i>
+            <h3>GitHub</h3>
+            <a href="https://github.com/shailesh-ghoghari" target="_blank">shailesh-ghoghari</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    © 2026 Shailesh Ghoghari · Full Stack Developer ·
+    <a href="https://github.com/shailesh-ghoghari" target="_blank" style="color:rgba(255,255,255,0.4); text-decoration:none; margin-left:8px;"><i class="bi bi-github"></i> GitHub</a>
+    <a href="https://www.linkedin.com/in/shailesh-ghoghari-b96b97228" target="_blank" style="color:rgba(255,255,255,0.4); text-decoration:none; margin-left:12px;"><i class="bi bi-linkedin"></i> LinkedIn</a>
+  </div>
+</footer>
+
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<div id="preloader"></div>
+
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/typed.js/typed.umd.js"></script>
+<script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/js/main.js"></script>
 
 </body>
-
 </html>
